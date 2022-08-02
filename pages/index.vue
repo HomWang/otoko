@@ -121,7 +121,7 @@
                   <div class="flex-none w-360px text-center" v-for="index in 12" :key="index">
                     <img class="w-full rounded-20px transform hover:scale-110 duration-150 ease-in-out"
                       :src="`/img/${index}.png`" alt="">
-                    <p class="mt-20px text-fs24 text-white">1205 remaining of 10000</p>
+                    <p class="mt-20px text-fs24 text-white">{{ walletStore.remainingNum }} remaining of 10000</p>
                   </div>
                   <!-- <ClientOnly>
                   <el-carousel :interval="4000" height="580px">
