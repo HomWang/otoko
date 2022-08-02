@@ -1,0 +1,48 @@
+{
+  "name": "otoko",
+  "version": "1.0.0",
+  "keywords": [
+    "nuxt3",
+    "web3-onboard"
+  ],
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "start": "node .output/server/index.mjs",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "@pinia/nuxt": "^0.3.0",
+    "@unocss/nuxt": "^0.44.7",
+    "@unocss/transformer-directives": "^0.45.1",
+    "@vueuse/core": "^9.0.0",
+    "@vueuse/nuxt": "^9.0.0",
+    "nuxt": "3.0.0-rc.6",
+    "rollup-plugin-polyfill-node": "^0.10.2",
+    "sass": "^1.54.0"
+  },
+  "dependencies": {
+    "@fullpage/nuxt-fullpage": "^0.2.3",
+    "@types/js-cookie": "^3.0.2",
+    "@web3-onboard/coinbase": "^2.0.9",
+    "@web3-onboard/core": "^2.5.0",
+    "@web3-onboard/injected-wallets": "^2.0.14",
+    "@web3-onboard/walletconnect": "^2.0.7",
+    "animejs": "^3.2.1",
+    "element-plus": "^2.2.11",
+    "ethers": "^5.6.9",
+    "js-cookie": "^3.0.1",
+    "mv-full-page": "^3.1.4",
+    "pinia": "^2.0.16",
+    "svgaplayerweb": "^2.3.2",
+    "vue3-marquee": "^3.0.7",
+    "web3": "^1.7.4",
+    "web3modal": "^1.9.8"
+  },
+  "engines": {
+    "node": "^16.11.0 || ^17.0.0"
+  }
+}
