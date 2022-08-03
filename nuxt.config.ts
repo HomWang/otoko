@@ -40,16 +40,44 @@ export default defineNuxtConfig({
     'vue3-marquee/dist/style.css',
     '~/node_modules/mv-full-page/dist-lib/style.css'
   ],
-  typescript: {
-    strict: true,
-    shim: false,
-  },
-  buildModules: [
+  modules: [
     '@pinia/nuxt',
     '@unocss/nuxt',
     '@vueuse/nuxt',
+    // 国际化i18n
+    '@intlify/nuxt3',
+    // 颜色模块
+    '@nuxtjs/color-mode',
     // '@fullpage/nuxt-fullpage',
   ],
+  // localization - i18n config
+  intlify: {
+    localeDir: 'locales',
+    vueI18n: {
+      locale: 'en-US',
+      fallbackLocale: 'en-US',
+      availableLocales: ['en-US', 'zh-CN'],
+      sync: true,
+    },
+  },
+  // 颜色
+  colorMode: {
+    classSuffix: '',
+    fallback: 'light',
+    storageKey: 'color-mode',
+  },
+  // typescript: {
+  //   strict: true,
+  //   shim: false,
+  // },
+  typescript: {
+    tsConfig: {
+      compilerOptions: {
+        strict: true,
+        types: ['@pinia/nuxt', '@intlify/nuxt3', './type.d.ts'],
+      },
+    },
+  },
   build: {
     standalone: true,
     transpile: [

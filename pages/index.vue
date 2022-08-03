@@ -33,6 +33,18 @@
 
           <div :class="page == 1 ? 'bg1-in' : ''" class="mt-170px ml-80px relative z-999">
             <img src="/img/bg1-content.png" alt="">
+            <!-- <div class="text-white">
+              <div>{{ t('hello', { msg: 'nuxt3' }) }}</div>
+              <div>
+                <h1>Color mode: {{ $colorMode.value }}</h1>
+                <select v-model="$colorMode.preference">
+                  <option value="system">System</option>
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                  <option value="sepia">Sepia</option>
+                </select>
+              </div>
+            </div> -->
             <p class="mt-10 text-20px text-white leading-9 max-w-710px">OTOKO is an NFT collection comprising 10,000
               generative NFTs created by earliest owners of BAYC. The NFT featuers the vast multiverse of characters
               with rare elements attached to them. The project will first launch 8,500 NFTs for free and then release
@@ -234,6 +246,18 @@
 
 <script setup lang="ts">
 import { Config } from 'mv-full-page'
+import { useI18n } from 'vue-i18n'
+
+// // i18n语言国际化
+// const { t } = useLang()
+// const { locale } = useI18n()
+// setTimeout(() => {
+//   // 切换语言
+//   locale.value = 'zh-CN'
+// }, 3000);
+// // 颜色模块
+// const colorMode = useColorMode()
+// console.log(colorMode.preference)
 
 const walletStore = useWalletStore();
 const bg3Banner = ref(1)
@@ -321,4 +345,16 @@ const reducePlusBanner = (state: number) => {
 </script>
 
 <style scoped>
+/* body {
+  background-color: #fff;
+  color: rgba(0,0,0,0.8);
+}
+.dark-mode body {
+  background-color: #091a28;
+  color: #ebf4f1;
+}
+.sepia-mode body {
+  background-color: #f1e7d0;
+  color: #433422;
+} */
 </style>

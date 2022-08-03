@@ -11,8 +11,8 @@ export default {
         }),
     ],
     theme: {
-        //     // 初始化默认主题
-        //     darkSelector: ".dark-mode",
+        // // 初始化默认主题
+        // darkSelector: ".dark-mode",
         screens: {
             'sm': '640px',
             // => @media (min-width: 640px) { ... }
