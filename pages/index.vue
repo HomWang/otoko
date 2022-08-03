@@ -14,19 +14,17 @@
                 href="https://opensea.io/collection/big-eye-rebellion" target="_blank" rel="noopener noreferrer">
                 <div class="w-36px h-36px cursor-pointer opensea"></div>
               </a>
-              <div
-                @click="clickConnect"
-                :class="walletStore.isConnected ? '' : 'cursor-pointer'"
+              <div @click="clickConnect" :class="walletStore.isConnected ? '' : 'cursor-pointer'"
                 class="connectBtn h-12 flex items-center justify-between space-x-3 px-10 rounded-full text-fs18 text-white relative">
                 <span class="flex h-4 w-4 relative">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-4 w-4 bg-white"></span>
                 </span>
                 <span>{{ walletStore.isConnected ?
-                      walletStore.ellipsisAccount :
-                      (walletStore.isAddressLoad ? 'CONNECT...' :
-                        'CONNECT')
-                  }}</span>
+                    walletStore.ellipsisAccount :
+                    (walletStore.isAddressLoad ? 'CONNECT...' :
+                      'CONNECT')
+                }}</span>
               </div>
             </div>
           </div>
@@ -45,12 +43,12 @@
                 </select>
               </div>
             </div> -->
-            <p class="mt-10 text-20px text-white leading-9 max-w-710px">OTOKO is an NFT collection comprising 10,000
+            <p class="mt-10 text-20px text-[#e5e5e5] leading-9 max-w-710px">OTOKO is an NFT collection comprising 10,000
               generative NFTs created by earliest owners of BAYC. The NFT featuers the vast multiverse of characters
-              with rare elements attached to them. The project will first launch 8,500 NFTs for free and then release
-              the remainng in coming weeks. </p>
-            <div
-              @click="walletStore.isConnected ? changeBanner() : changeMetamask()"
+              with rare elements attached to them. The project will launch 10,000 NFTs by ductch auction. This
+              descending auction has a start time of Aug 6th 10 am ET at the price of 1.0 Ξ and will decrease every two
+              hours to 0.1 Ξ. </p>
+            <div @click="walletStore.isConnected ? changeBanner() : changeMetamask()"
               class="connectBtn mt-10 max-w-320px h-68px flex items-center justify-center rounded-full text-fs20 text-white cursor-pointer">
               Free Mint</div>
           </div>
@@ -167,9 +165,7 @@
         enter-to-class="opacity-100 scale-100 duration-150 ease-out"
         leave-from-class="opacity-100 scale-100 duration-150 ease-in"
         leave-to-class="opacity-0 scale-95 duration-150 ease-in">
-        <div v-show="walletModal"
-          ref="walletModalRef"
-          @click.stop="walletStore.useWeb3(), changeMetamask()"
+        <div v-show="walletModal" ref="walletModalRef" @click.stop="walletStore.useWeb3(), changeMetamask()"
           class="flex items-center justify-center absolute left-1/2 -ml-160px top-1/2 -mt-120px w-320px py-40px rounded-10px bg-MetaMask z-999 cursor-pointer">
           <div class="flex items-center justify-center h-full">
             <div class="">
