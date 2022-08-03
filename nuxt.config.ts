@@ -22,10 +22,14 @@ const vitePlugin =
 export default defineNuxtConfig({
   app: {
     head: {
+      title: 'OTOKO',
       meta: [
         { name: 'referrer', content: 'no-referrer' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ],
+      // link: [
+      //   { rel: 'icon', type: 'image/x-icon', href: '/img/logo.png' }
+      // ],
       script: [
         { src: 'https://cdn.bootcdn.net/ajax/libs/web3/1.7.4/web3.min.js' }
       ],
