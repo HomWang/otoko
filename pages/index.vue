@@ -130,10 +130,11 @@
               <div class="max-w-1560px mx-auto rounded-20px bg-white-005 p-30px overflow-hidden">
                 <div :style="{ transform: `translateX(-${(bg3Banner - 1) * 102.5}%)` }"
                   class="flex items-center space-x-40px transition duration-150 ease-in-out">
-                  <div class="flex-none w-360px text-center" v-for="index in 12" :key="index">
+                  <div class="flex-none w-360px text-center" v-for="(item, index) in nftData" :key="index">
                     <img class="w-full rounded-20px transform hover:scale-110 duration-150 ease-in-out"
-                      :src="`/img/${index}.png`" alt="">
-                    <p class="mt-20px text-fs24 text-white">{{ walletStore.remainingNum }} remaining of 10000</p>
+                      :src="`/img/${index + 1}.jpg`" alt="">
+                    <!-- <p class="mt-20px text-fs24 text-white">{{ walletStore.remainingNum }} remaining of 10000</p> -->
+                    <p class="mt-20px text-fs24 text-white">{{ item }}</p>
                   </div>
                   <!-- <ClientOnly>
                   <el-carousel :interval="4000" height="580px">
@@ -205,7 +206,7 @@
           </div>
           <div>
             <div class="pt-40px text-center text-fs48 text-black">Free to Mint</div>
-            <p class="mt-4 text-center">1205 remaining of 10000</p>
+            <p class="mt-4 text-center">{{ walletStore.remainingNum - 1500 }} remaining of 8500</p>
             <!-- <div class="flex items-center space-x-10px">
               <div class="flex items-center justify-between bg-[#F2F2F2] rounded w-200px h-48px flex-none">
                 <div class="flex items-center justify-between bg-[#F2F2F2] rounded w-200px h-48px flex-none">
@@ -233,8 +234,9 @@
                 Max 5 per wallet</div>
             </div> -->
             <div
-              @click="useMint(bannerNumber)"
-              class="connectBtn w-full mx-auto h-68px rounded-full bg-[#CCCCCC] text-white flex items-center justify-center cursor-pointer text-fs18 mt-30px mb-20px">
+              :class="(walletStore.remainingNum - 1500) <= 0 ? 'bg-[#999999] cursor-not-allowed' : 'connectBtn cursor-pointer'"
+              @click="(walletStore.remainingNum - 1500) <= 0 ? '' : useMint(bannerNumber)"
+              class="w-full mx-auto h-68px rounded-full bg-[#CCCCCC] text-white flex items-center justify-center text-fs18 mt-30px mb-20px">
               MINT</div>
           </div>
         </div>
@@ -266,6 +268,21 @@ const page = ref(1)
 const config = ref({
   direction: 'v'
 } as Config)
+
+const nftData = ref([
+  'otoko#483',
+  'otoko#1803',
+  'otoko#1927',
+  'otoko#3587',
+  'otoko#4129',
+  'otoko#4360',
+  'otoko#5000',
+  'otoko#5745',
+  'otoko#6362',
+  'otoko#6556',
+  'otoko#6803',
+  'otoko#7301',
+])
 
 const myFullPage = ref();
 const toPage = (num: number) => {
