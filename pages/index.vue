@@ -85,22 +85,12 @@
 
         </template>
         <template #page2>
-          <img class="max-w-1270px absolute mt-40px left-1/2 -ml-635px" src="/img/bg2.png" alt="">
+          <img class="max-w-1270px absolute mt-80px left-1/2 -ml-635px" src="/img/bg2.png" alt="">
           <div class="relative z-999 max-w-1600px mx-auto text-center">
-            <img :class="page == 2 ? 'bg2-banner-in' : ''" class="max-w-1400px mx-auto mt-100px"
+            <img :class="page == 2 ? 'bg2-banner-in' : ''" class="max-w-1400px mx-auto mt-160px"
               src="/img/bg2-title.png" alt="">
             <div :class="page == 2 ? 'bg2-in' : ''" class="mx-auto leading-30px text-20px text-white">
-              <p class="mt-8">The year is 3022, and the earth's environment suddenly deteriorated dramatically, making
-                it uninhabitable for humans to live on. In March, an Antarctic expedition found a mysterious treasure
-                chest near the South Pole, which contained two copies of drawings and a treasure map. The drawings
-                describe a climate controller, and a humanoid robot, while the treasure map is marked with 10 multiverse
-                coordinates.</p>
-              <p class="mt-4">The best scientists on the planet were brought together. The drawings showed a total of 10
-                parts for the climate controller, but the scientists found that none of the materials for these parts
-                were available on Earth, nor could they even be synthesized artificially. Everyone agreed that the 10
-                multiverse coordinates corresponded to the location of the 10 parts of the climate controller. But how
-                to get there? After all, although people have heard of it but no one has ever really been to the
-                multiverse.</p>
+              <p class="mt-8">At the beginning of 2032, owing to an ice age caused by climate change, the fate of human beings hung in the balance. In March, a mystic encrypted message in the form of quantum signal was received by all governments on earth. The deciphered message indicated a blueprint of a climate controller, every component of which had a multiverse coordinate attached to it. In order to fetch all the components of the climate controller, scientists on earth built a humanoid robot named Otoko. With the fate of human beings in its hands, Otoko embarked on an adventure of multiverse traveling…</p>
             </div>
           </div>
         </template>
@@ -111,10 +101,10 @@
             <div class="pt-20 text-center">
               <img class="mx-auto" src="/img/GALLERY.png" alt="">
             </div>
-            <div class="pt-10 text-center animate-bounce">
+            <div class="pt-80px text-center animate-bounce">
               <img class="mx-auto" src="/img/bg3-bottom.png" alt="">
             </div>
-            <p :class="page == 3 ? 'bg3-text-in' : ''"
+            <!-- <p :class="page == 3 ? 'bg3-text-in' : ''"
               class="mt-26px text-fs24 text-white leading-8 max-w-1450px mx-auto text-center">
               All eyes were on the robot whose model name is Otoko, for all of its parts could be manufactured on this
               planet.
@@ -123,8 +113,8 @@
               Otoko was about to embark on an adventure to 10 different multiverses. How would it reshape the future of
               human beings?
               To be continued…
-            </p>
-            <div class="mt-30px relative z-999">
+            </p> -->
+            <div class="mt-60px relative z-999">
               <div class="max-w-1560px mx-auto rounded-20px bg-white-005 p-30px overflow-hidden">
                 <div :style="{ transform: `translateX(-${(bg3Banner - 1) * 102.5}%)` }"
                   class="flex items-center space-x-40px transition duration-150 ease-in-out">
@@ -186,7 +176,7 @@
         leave-from-class="opacity-100 scale-100 duration-150 ease-in"
         leave-to-class="opacity-0 scale-95 duration-150 ease-in">
         <div v-show="bannerModal" ref="bannerModalRef"
-          class="absolute left-1/2 -ml-160px top-1/2 -mt-340px w-380px p-20px rounded-10px bg-white z-999">
+          class="absolute left-1/2 -ml-160px top-1/2 -mt-400px w-380px p-20px rounded-10px bg-white z-999">
           <div class="flex items-center">
             <div class="w-380px h-380px bg-cover bg-center flex items-center justify-center relative">
               <div @click="bannerModal = false"
@@ -201,8 +191,15 @@
             </div>
           </div>
           <div>
-            <div class="pt-40px text-center text-fs48 text-black">Free to Mint</div>
-            <p class="mt-4 text-center">{{ walletStore.remainingNum - 1500 }} remaining of 8500</p>
+            <div class="pt-30px text-center text-fs20 text-[#666666] flex items-center justify-center">
+              <span>otoko</span>
+              <span>#0</span>
+            </div>
+            <div class="pt-5 text-center text-fs48 text-black">1 ETH</div>
+            <div class="text-center mt-4 text-[#666666] leading-8 text-fs18">
+              <p>Price per Token: 1Ξ</p>
+              <p>Dutch Auction starting at 1Ξ and decreasing every two hours to resting price of 0.1Ξ</p>
+            </div>
             <!-- <div class="flex items-center space-x-10px">
               <div class="flex items-center justify-between bg-[#F2F2F2] rounded w-200px h-48px flex-none">
                 <div class="flex items-center justify-between bg-[#F2F2F2] rounded w-200px h-48px flex-none">
@@ -229,11 +226,13 @@
                 class="rounded bg-[#CCCCCC] text-white text-fs18 flex items-center justify-center flex-1 h-48px cursor-not-allowed">
                 Max 5 per wallet</div>
             </div> -->
-            <div
-              :class="(walletStore.remainingNum - 1500) <= 0 ? 'bg-[#999999] cursor-not-allowed' : 'connectBtn cursor-pointer'"
-              @click="(walletStore.remainingNum - 1500) <= 0 ? '' : useMint(bannerNumber)"
-              class="w-full mx-auto h-68px rounded-full bg-[#CCCCCC] text-white flex items-center justify-center text-fs18 mt-30px mb-20px">
+            <!-- :class="walletStore.remainingNum <= 0 ? 'bg-[#999999] cursor-not-allowed' : 'connectBtn cursor-pointer'"
+              @click="walletStore.remainingNum <= 0 ? '' : useMint(bannerNumber)" -->
+            <div :class="'bg-[#999999] cursor-not-allowed'"
+              class="w-full mx-auto h-68px rounded-full bg-[#CCCCCC] text-white flex items-center justify-center text-fs18 mt-26px">
               MINT</div>
+            <!-- <p class="mt-4 text-center">{{ walletStore.remainingNum }} remaining of 10000</p> -->
+            <p class="mt-10px text-[#666666] text-center">10000 remaining of 10000</p>
           </div>
         </div>
       </Transition>
