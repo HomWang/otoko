@@ -44,13 +44,13 @@
               </div>
             </div> -->
             <p class="mt-10 text-20px text-[#e5e5e5] leading-9 max-w-710px">OTOKO is an NFT collection comprising 10,000
-              generative NFTs created by earliest owners of BAYC. The NFT featuers the vast multiverse of characters
-              with rare elements attached to them. The project will launch 10,000 NFTs by ductch auction. This
-              descending auction has a start time of Aug 6th 10 am ET at the price of 1.0 Ξ and will decrease every two
-              hours to 0.1 Ξ. </p>
+              generative NFTs created by earliest owners of BAYC. The NFT features the vast multiverse of characters
+              with rare elements attached to them. The project will launch 10,000 NFTs by Dutch auction. This descending
+              auction has a start time of Aug 6th 10 am ET at the price of 1.0 Ξ and will decrease every two hours to
+              0.1 Ξ.</p>
             <div @click="walletStore.isConnected ? changeBanner() : changeMetamask()"
               class="connectBtn mt-10 max-w-320px h-68px flex items-center justify-center rounded-full text-fs20 text-white cursor-pointer">
-              Free Mint</div>
+              Mint</div>
           </div>
 
           <div class="w-[100vh] h-full rounded-full absolute right-60px -top-60px z-10">
@@ -90,7 +90,12 @@
             <img :class="page == 2 ? 'bg2-banner-in' : ''" class="max-w-1400px mx-auto mt-160px"
               src="/img/bg2-title.png" alt="">
             <div :class="page == 2 ? 'bg2-in' : ''" class="mx-auto leading-30px text-20px text-white">
-              <p class="mt-8">At the beginning of 2032, owing to an ice age caused by climate change, the fate of human beings hung in the balance. In March, a mystic encrypted message in the form of quantum signal was received by all governments on earth. The deciphered message indicated a blueprint of a climate controller, every component of which had a multiverse coordinate attached to it. In order to fetch all the components of the climate controller, scientists on earth built a humanoid robot named Otoko. With the fate of human beings in its hands, Otoko embarked on an adventure of multiverse traveling…</p>
+              <p class="mt-8">At the beginning of 2032, owing to an ice age caused by climate change, the fate of human
+                beings hung in the balance. In March, a mystic encrypted message in the form of quantum signal was
+                received by all governments on earth. The deciphered message indicated a blueprint of a climate
+                controller, every component of which had a multiverse coordinate attached to it. In order to fetch all
+                the components of the climate controller, scientists on earth built a humanoid robot named Otoko. With
+                the fate of human beings in its hands, Otoko embarked on an adventure of multiverse traveling…</p>
             </div>
           </div>
         </template>
