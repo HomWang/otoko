@@ -44,10 +44,10 @@
               </div>
             </div> -->
             <p class="mt-10 text-20px text-[#e5e5e5] leading-9 max-w-710px">OTOKO is an NFT collection comprising 10,000
-              generative NFTs created by earliest owners of BAYC. The NFT features the vast multiverse of characters
-              with rare elements attached to them. The project will launch 10,000 NFTs by Dutch auction. This descending
-              auction has a start time of Aug 6th 10 am ET at the price of 1.0 Ξ and will decrease every two hours to
-              0.1 Ξ.</p>
+              generative NFTs created by earliest owners of BAYC. The NFT featuers the vast multiverse of characters
+              with rare elements attached to them. The project will launch 10,000 NFTs by ductch auction. This
+              descending auction has a start time of Aug 6th 10 am ET at the price of 1.0 Ξ and will decrease every two
+              hours to 0.1 Ξ.</p>
             <div @click="walletStore.isConnected ? changeBanner() : changeMetamask()"
               class="connectBtn mt-10 max-w-320px h-68px flex items-center justify-center rounded-full text-fs20 text-white cursor-pointer">
               Mint</div>
@@ -64,6 +64,10 @@
           </div>
           <div class="svgaContainer absolute right-0 top-1/2 -mt-300px z-20">
             <div id="svgaAnimation" style="background-color: transparent; width: 1350px; height: 729px; margin: auto;">
+              <div v-if="loading" class="loader">
+                <div class="loading-1"></div>
+                <div class="loading-2">Loading...</div>
+              </div>
             </div>
           </div>
 
@@ -85,13 +89,13 @@
 
         </template>
         <template #page2>
-          <img class="max-w-1270px absolute mt-80px left-1/2 -ml-635px" src="/img/bg2.png" alt="">
-          <div class="relative z-999 max-w-1600px mx-auto text-center">
-            <img :class="page == 2 ? 'bg2-banner-in' : ''" class="max-w-1400px mx-auto mt-160px"
-              src="/img/bg2-title.png" alt="">
+          <div class="bg-center bg-cover h-700px" :style="{ 'background-image': 'url(/img/bg4.png)' }"></div>
+          <div class="max-w-1600px mx-auto text-center">
+            <img :class="page == 2 ? 'bg2-banner-in' : ''" class="max-w-1400px mx-auto mt-50px" src="/img/bg4-title.png"
+              alt="">
             <div :class="page == 2 ? 'bg2-in' : ''" class="mx-auto leading-30px text-20px text-white">
-              <p class="mt-8">At the beginning of 2032, owing to an ice age caused by climate change, the fate of human
-                beings hung in the balance. In March, a mystic encrypted message in the form of quantum signal was
+              <p class="mt-40px">At the beginning of 2032, owing to an ice age caused by climate change, the fate of
+                human beings hung in the balance. In March, a mystic encrypted message in the form of quantum signal was
                 received by all governments on earth. The deciphered message indicated a blueprint of a climate
                 controller, every component of which had a multiverse coordinate attached to it. In order to fetch all
                 the components of the climate controller, scientists on earth built a humanoid robot named Otoko. With
@@ -100,6 +104,51 @@
           </div>
         </template>
         <template #page3>
+          <div data-scroll="true">
+            <div ref="page3" class="text-center py-80px max-w-1600px mx-auto overflow-auto h-screen">
+              <img class="mx-auto" src="/img/bgnew-title.png" alt="">
+              <div class="flex items-center justify-between mt-80px">
+                <img class="w-640px" src="/img/bgnew-1.png" alt="">
+                <div class="bg-[#24243a] roudned-10px w-640px py-60px flex items-center justify-center">
+                  <div class="px-30px text-center">
+                    <img src="/img/debris.png" alt="">
+                    <p class="text-fs20 text-white mt-35px leading-30px">In the endless universe, there is a group of
+                      clippers that are collecting debris scattered in various multiverse until the last piece is
+                      found...
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <img src="/img/left.png" alt="">
+              <div class="flex items-center justify-between">
+                <div class="bg-[#24243a] roudned-10px w-640px py-60px flex items-center justify-center">
+                  <div class="px-30px text-center">
+                    <img src="/img/debris.png" alt="">
+                    <p class="text-fs20 text-white mt-35px leading-30px">In another corner of the earth, at a glance
+                      from the outside, Otoko slogan is put on the top of the world's most powerful robot manufacturing
+                      base, designed by the world's top notch scientists. They have been working hard to test all
+                      possible combinations to develop the cyborg. Finally... they succeeded!</p>
+                  </div>
+                </div>
+                <img class="w-640px" src="/img/bgnew-2.png" alt="">
+              </div>
+              <img src="/img/right.png" alt="">
+              <div class="flex items-center justify-between pb-80px">
+                <img class="w-640px" src="/img/bgnew-1.png" alt="">
+                <div class="bg-[#24243a] roudned-10px w-640px py-60px flex items-center justify-center">
+                  <div class="px-30px text-center">
+                    <img src="/img/debris.png" alt="">
+                    <p class="text-fs20 text-white mt-35px leading-30px">The cheering sound spreads all over the earth,
+                      and the efforts are finally not in vain! The robot production workshop is able to achieve fully
+                      automatic production, only to see rows of robots standing there, as if waiting for some
+                      instructions...</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+        <template #page4>
           <div class="relative w-full h-full">
             <img class="absolute left-0 top-0" src="/img/bg3-1-1.png" alt="">
             <img class="absolute right-0 bottom-0" src="/img/bg3-1-2.png" alt="">
@@ -192,16 +241,18 @@
               </div>
               <div class="absolute left-0 top-0 w-full h-full">
                 <!-- <img class="duration-300 ease-out absolute left-0 top-0 w-380px" src="/img/1.png" alt=""> -->
-                <img class="duration-300 ease-out absolute left-0 top-0 w-380px" :src="`https://ipfs.io/ipfs/QmY9AkQgjJSKbzpV6CWcDHi744X7LHmp9NikjN2uQ6JtZC/${walletStore.nowMintTokenId}.png`" alt="">
+                <img class="duration-300 ease-out absolute left-0 top-0 w-380px"
+                  :src="`https://ipfs.io/ipfs/QmY9AkQgjJSKbzpV6CWcDHi744X7LHmp9NikjN2uQ6JtZC/${walletStore.nowMintTokenId}.png`"
+                  alt="">
               </div>
             </div>
           </div>
           <div>
             <div class="pt-30px text-center text-fs20 text-[#666666] flex items-center justify-center">
               <span>OTOKO</span>
-              <span>#{{walletStore.nowMintTokenId}}</span>
+              <span>#{{ walletStore.nowMintTokenId }}</span>
             </div>
-            <div class="pt-5 text-center text-fs48 text-black">{{walletStore.getNowMintPrice / 10 / 10}} ETH</div>
+            <div class="pt-5 text-center text-fs48 text-black">{{ walletStore.getNowMintPrice / 10 / 10 }} ETH</div>
             <div class="text-center mt-4 text-[#666666] leading-8 text-fs18">
               <p>Price per Token: 1Ξ</p>
               <p>Dutch Auction starting at 1Ξ and decreasing every two hours to resting price of 0.1Ξ</p>
@@ -264,25 +315,25 @@ import { useI18n } from 'vue-i18n'
 
 const walletStore = useWalletStore();
 const bg3Banner = ref(1)
-const pages = ref(3)
+const pages = ref(4)
 const page = ref(1)
 const config = ref({
   direction: 'v'
 } as Config)
 
 const nftData = ref([
-  'otoko#483',
-  'otoko#1803',
-  'otoko#1927',
-  'otoko#3587',
-  'otoko#4129',
-  'otoko#4360',
-  'otoko#5000',
-  'otoko#5745',
-  'otoko#6362',
-  'otoko#6556',
-  'otoko#6803',
-  'otoko#7301',
+  'OTOKO#483',
+  'OTOKO#1803',
+  'OTOKO#1927',
+  'OTOKO#3587',
+  'OTOKO#4129',
+  'OTOKO#4360',
+  'OTOKO#5000',
+  'OTOKO#5745',
+  'OTOKO#6362',
+  'OTOKO#6556',
+  'OTOKO#6803',
+  'OTOKO#7301',
 ])
 
 const myFullPage = ref();
@@ -297,6 +348,7 @@ onMounted(async () => {
 
 //声明svga变量
 var parser;
+let loading = ref(true)
 // 播放svga的方法
 async function svga_player(url: any) {
   const SVGA = (await import('svgaplayerweb'))
@@ -306,6 +358,7 @@ async function svga_player(url: any) {
     player.setVideoItem(videoItem);
     // zIndex.value = 9999;
     player.startAnimation();
+    loading.value = false
   });
 }
 
@@ -360,6 +413,17 @@ const reducePlusBanner = (state: number) => {
   }
 }
 
+const page3 = ref<HTMLElement | null>(null)
+const { x, y, isScrolling, arrivedState, directions } = useScroll(page3)
+
+watch(y, (newValue: any, oldValue: any) => {
+  if (newValue == 0) {
+    toPage(2)
+  } else if (newValue >= 705) {
+    toPage(4)
+  }
+})
+
 </script>
 
 <style scoped>
@@ -375,4 +439,63 @@ const reducePlusBanner = (state: number) => {
   background-color: #f1e7d0;
   color: #433422;
 } */
+.loader {
+    width: 150px;
+    margin: 50px auto 70px;
+    position: relative;
+}
+.loader .loading-1 {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    border: 1px solid #69d2e7;
+    border-radius: 10px;
+    animation: turn 4s linear 1.75s infinite;
+}
+.loader .loading-1:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0%;
+    height: 100%;
+    background: #69d2e7;
+    box-shadow: 10px 0px 15px 0px #69d2e7;
+    animation: load 2s linear infinite;
+}
+.loader .loading-2 {
+    width: 100%;
+    position: absolute;
+    top: 10px;
+    color: #69d2e7;
+    font-size: 22px;
+    text-align: center;
+    animation: bounce 2s  linear infinite;
+}
+@keyframes load {
+    0% {
+        width: 0%;
+    }
+    87.5%, 100% {
+        width: 100%;
+    }
+}
+@keyframes turn {
+    0% {
+        transform: rotateY(0deg);
+    }
+    6.25%, 50% {
+        transform: rotateY(180deg);
+    }
+    56.25%, 100% {
+        transform: rotateY(360deg);
+    }
+}
+@keyframes bounce {
+    0%,100% {
+        top: 10px;
+    }
+    12.5% {
+        top: 30px;
+    }
+}
 </style>
