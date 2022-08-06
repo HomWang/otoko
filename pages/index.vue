@@ -191,16 +191,17 @@
                 </div>
               </div>
               <div class="absolute left-0 top-0 w-full h-full">
-                <img class="duration-300 ease-out absolute left-0 top-0 w-380px" src="/img/1.png" alt="">
+                <!-- <img class="duration-300 ease-out absolute left-0 top-0 w-380px" src="/img/1.png" alt=""> -->
+                <img class="duration-300 ease-out absolute left-0 top-0 w-380px" :src="`https://ipfs.io/ipfs/QmY9AkQgjJSKbzpV6CWcDHi744X7LHmp9NikjN2uQ6JtZC/${walletStore.nowMintTokenId}.png`" alt="">
               </div>
             </div>
           </div>
           <div>
             <div class="pt-30px text-center text-fs20 text-[#666666] flex items-center justify-center">
-              <span>otoko</span>
-              <span>#0</span>
+              <span>OTOKO</span>
+              <span>#{{walletStore.nowMintTokenId}}</span>
             </div>
-            <div class="pt-5 text-center text-fs48 text-black">1 ETH</div>
+            <div class="pt-5 text-center text-fs48 text-black">{{walletStore.getNowMintPrice / 10 / 10}} ETH</div>
             <div class="text-center mt-4 text-[#666666] leading-8 text-fs18">
               <p>Price per Token: 1Ξ</p>
               <p>Dutch Auction starting at 1Ξ and decreasing every two hours to resting price of 0.1Ξ</p>
@@ -231,13 +232,13 @@
                 class="rounded bg-[#CCCCCC] text-white text-fs18 flex items-center justify-center flex-1 h-48px cursor-not-allowed">
                 Max 5 per wallet</div>
             </div> -->
-            <!-- :class="walletStore.remainingNum <= 0 ? 'bg-[#999999] cursor-not-allowed' : 'connectBtn cursor-pointer'"
-              @click="walletStore.remainingNum <= 0 ? '' : useMint(bannerNumber)" -->
-            <div :class="'bg-[#999999] cursor-not-allowed'"
+            <div
+              :class="walletStore.remainingNum <= 0 ? 'bg-[#999999] cursor-not-allowed' : 'connectBtn cursor-pointer'"
+              @click="walletStore.remainingNum <= 0 ? '' : useMint(bannerNumber)"
               class="w-full mx-auto h-68px rounded-full bg-[#CCCCCC] text-white flex items-center justify-center text-fs18 mt-26px">
               MINT</div>
-            <!-- <p class="mt-4 text-center">{{ walletStore.remainingNum }} remaining of 10000</p> -->
-            <p class="mt-10px text-[#666666] text-center">10000 remaining of 10000</p>
+            <p class="mt-4 text-center">{{ walletStore.remainingNum }} remaining of 10000</p>
+            <!-- <p class="mt-10px text-[#666666] text-center">10000 remaining of 10000</p> -->
           </div>
         </div>
       </Transition>

@@ -22,19 +22,37 @@ export async function useMint(mintNum: number) {
   // })
   //获取gasPrice，单位为 wei
   let getGasPrice = await web3.eth.getGasPrice();
-  contract.methods.freeMint(mintNum).send({
+  // 更新价格
+  await walletStore.updateNowMintPrice()
+  let getNowMintPrice = walletStore.getNowMintPrice / 10 /10
+  let getNowMintPriceWei = web3.utils.toWei(`${getNowMintPrice}`)
+  //mintNum
+  contract.methods.mint().send({
     from: walletStore.address,
+    value: getNowMintPriceWei,
     gasPrice: getGasPrice,
     gasLimit: 300000,
-  }, function(error, transactionHash){
+  }, function(error: any, transactionHash: any){
     if (!error) {
-      console.log("交易hash：", transactionHash)
+      // console.log("交易hash：", transactionHash)
     } else {
-      console.log(error)
+      // console.log(error)
     }
-  }).then(function (receipt) {//监听后续的交易情况
-    console.log(receipt)
-    console.log("交易状态：", receipt.status)
+  }).then(async function (receipt: { status: any; }) {//监听后续的交易情况
+    // console.log(receipt)
+    // console.log("交易状态：", receipt.status)
+    // 交易成功重新获取
+    if(receipt.status){
+      // 获取当前剩余未被mint的剩余数量
+      // console.log('获取当前剩余未被mint的剩余数量')
+      await walletStore.updateRemaining()
+      // 获取当前拍卖的竞品ID
+      // console.log('获取当前拍卖的竞品ID')
+      await walletStore.updateNowMintTokenId()
+      // 更新价格
+      // console.log('更新价格')
+      await walletStore.updateNowMintPrice()
+    }
   });
 
   // // 转账

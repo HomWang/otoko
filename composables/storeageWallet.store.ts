@@ -22,13 +22,44 @@ export const useWalletStore = defineStore({
     ellipsisAccount: '',
     balance: 0,
     isConnected: false,
-    remainingNum: 0,
-    contractAddress: '0x495F1eC64467539cAd047629086E3Cd95459E374',
+    contractAddress: '0x2348c23542a9d48dafbcbf55b322653ac366240f',
+    getNowMintPrice: 0,//获取当前的竞品价格
+    nowMintTokenId: 0,//获取当前拍卖的竞品ID
+    remainingNum: 0,//获取当前剩余未被mint的剩余数量
+    // remaining: 0,//获取当前剩余未被mint的剩余数量
+    tokenURI: '',//获取NFT的URL
   }),
   getters: {
     getAddress: (state) => state.address
   },
   actions: {
+    async updateNowMintPrice(){
+      const contract = new web3.eth.Contract(NFTABI, this.contractAddress);
+      // 获取当前的竞品价格
+      await contract.methods.getNowMintPrice().call().then((v: any) => {
+        return v
+      }).then((sum: any) => {
+        this.getNowMintPrice = sum
+      })
+    },
+    async updateNowMintTokenId(){
+      const contract = new web3.eth.Contract(NFTABI, this.contractAddress);
+      // 获取当前拍卖的竞品ID
+      await contract.methods.nowMintTokenId().call().then((v: any) => {
+        return v
+      }).then((sum: any) => {
+        this.nowMintTokenId = sum
+      })
+    },
+    async updateRemaining(){
+      const contract = new web3.eth.Contract(NFTABI, this.contractAddress);
+      // 获取当前剩余未被mint的剩余数量
+      await contract.methods.remaining().call().then((v: any) => {
+        return v
+      }).then((sum: any) => {
+        this.remainingNum = sum
+      })
+    },
     // setAuthenticated: async function (payload) {
     async useWeb3() {
       if (process.client) {
@@ -58,17 +89,21 @@ export const useWalletStore = defineStore({
             })
           })
           
-          // var contractAddress = "0x495F1eC64467539cAd047629086E3Cd95459E374";
+          // var contractAddress = "0x2348c23542a9d48dafbcbf55b322653ac366240f";
           // 调用合约
-          const contract = new web3.eth.Contract(NFTABI, this.contractAddress);
-          contract.methods.remaining().call().then((v: any) => {
-            // console.log(v)
-            // let ret = new BigNumber(v);
-            // return parseFloat(ret.dividedBy(Ether)).toFixed(2);
-            return v
-          }).then((sum: any) => {
-            this.remainingNum = sum
-          })
+          // const contract = new web3.eth.Contract(NFTABI, this.contractAddress);
+          // 获取当前剩余未被mint的剩余数量
+          await this.updateRemaining()
+          // 获取当前拍卖的竞品ID
+          await this.updateNowMintTokenId()
+          // 获取当前的竞品价格
+          await this.updateNowMintPrice()
+          // 获取NFT的URL
+          // await contract.methods.tokenURI({_tokenId: this.nowMintTokenId}).call().then((v: any) => {
+          //   return v
+          // }).then((sum: any) => {
+          //   this.tokenURI = sum
+          // })
 
         } else {
           this.isConnected = false
