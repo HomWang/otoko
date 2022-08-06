@@ -64,10 +64,6 @@
           </div>
           <div class="svgaContainer absolute right-0 top-1/2 -mt-300px z-20">
             <div id="svgaAnimation" style="background-color: transparent; width: 1350px; height: 729px; margin: auto;">
-              <div v-if="loading" class="loader">
-                <div class="loading-1"></div>
-                <div class="loading-2">Loading...</div>
-              </div>
             </div>
           </div>
 
@@ -204,6 +200,22 @@
     </ClientOnly>
 
     <div>
+      <div v-show="loading" class="fixed top-0 left-0 w-full h-full bg-BgPopup z-999"></div>
+      <Transition enter-from-class="opacity-0 scale-95 duration-150 ease-out"
+        enter-to-class="opacity-100 scale-100 duration-150 ease-out"
+        leave-from-class="opacity-100 scale-100 duration-150 ease-in"
+        leave-to-class="opacity-0 scale-95 duration-150 ease-in">
+        <div v-show="loading" ref="loadingRef"
+          class="flex items-center justify-center absolute left-0 top-0 w-full h-full rounded-10px bg-MetaMask z-999 cursor-pointer">
+          <div class="loader">
+            <div class="loading-1"></div>
+            <div class="loading-2">Loading...</div>
+          </div>
+        </div>
+      </Transition>
+    </div>
+
+    <div>
       <div v-show="walletModal" class="fixed top-0 left-0 w-full h-full bg-BgPopup z-999"></div>
       <Transition enter-from-class="opacity-0 scale-95 duration-150 ease-out"
         enter-to-class="opacity-100 scale-100 duration-150 ease-out"
@@ -252,10 +264,10 @@
               <span>OTOKO</span>
               <span>#{{ walletStore.nowMintTokenId }}</span>
             </div>
-            <div class="pt-5 text-center text-fs48 text-black">{{ walletStore.getNowMintPrice / 10 / 10 }} ETH</div>
+            <div class="pt-5 text-center text-fs48 text-black">{{ walletStore.getNowMintPrice ? (Number(walletStore.getNowMintPrice) / 10 / 10) : '--' }} ETH</div>
             <div class="text-center mt-4 text-[#666666] leading-8 text-fs18">
               <p>Price per Token: 1Ξ</p>
-              <p>Dutch Auction starting at 1Ξ and decreasing every two hours to resting price of 0.1Ξ</p>
+              <p>Dutch Auction starts at 1Ξ and decreases every two hours to resting price of 0.1Ξ</p>
             </div>
             <!-- <div class="flex items-center space-x-10px">
               <div class="flex items-center justify-between bg-[#F2F2F2] rounded w-200px h-48px flex-none">
@@ -284,8 +296,8 @@
                 Max 5 per wallet</div>
             </div> -->
             <div
-              :class="walletStore.remainingNum <= 0 ? 'bg-[#999999] cursor-not-allowed' : 'connectBtn cursor-pointer'"
-              @click="walletStore.remainingNum <= 0 ? '' : useMint(bannerNumber)"
+              :class="walletStore.remainingNum <= 0 || walletStore.getNowMintPrice === '' ? 'bg-[#999999] cursor-not-allowed' : 'connectBtn cursor-pointer'"
+              @click="walletStore.remainingNum <= 0 || walletStore.getNowMintPrice === '' ? '' : useMint(bannerNumber)"
               class="w-full mx-auto h-68px rounded-full bg-[#CCCCCC] text-white flex items-center justify-center text-fs18 mt-26px">
               MINT</div>
             <p class="mt-4 text-center">{{ walletStore.remainingNum }} remaining of 10000</p>
@@ -440,62 +452,77 @@ watch(y, (newValue: any, oldValue: any) => {
   color: #433422;
 } */
 .loader {
-    width: 150px;
-    margin: 50px auto 70px;
-    position: relative;
+  width: 150px;
+  margin: 50px auto 70px;
+  position: relative;
 }
+
 .loader .loading-1 {
-    position: relative;
-    width: 100%;
-    height: 10px;
-    border: 1px solid #69d2e7;
-    border-radius: 10px;
-    animation: turn 4s linear 1.75s infinite;
+  position: relative;
+  width: 100%;
+  height: 10px;
+  border: 1px solid #69d2e7;
+  border-radius: 10px;
+  animation: turn 4s linear 1.75s infinite;
 }
+
 .loader .loading-1:before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 0%;
-    height: 100%;
-    background: #69d2e7;
-    box-shadow: 10px 0px 15px 0px #69d2e7;
-    animation: load 2s linear infinite;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background: #69d2e7;
+  box-shadow: 10px 0px 15px 0px #69d2e7;
+  animation: load 2s linear infinite;
 }
+
 .loader .loading-2 {
-    width: 100%;
-    position: absolute;
-    top: 10px;
-    color: #69d2e7;
-    font-size: 22px;
-    text-align: center;
-    animation: bounce 2s  linear infinite;
+  width: 100%;
+  position: absolute;
+  top: 10px;
+  color: #69d2e7;
+  font-size: 22px;
+  text-align: center;
+  animation: bounce 2s linear infinite;
 }
+
 @keyframes load {
-    0% {
-        width: 0%;
-    }
-    87.5%, 100% {
-        width: 100%;
-    }
+  0% {
+    width: 0%;
+  }
+
+  87.5%,
+  100% {
+    width: 100%;
+  }
 }
+
 @keyframes turn {
-    0% {
-        transform: rotateY(0deg);
-    }
-    6.25%, 50% {
-        transform: rotateY(180deg);
-    }
-    56.25%, 100% {
-        transform: rotateY(360deg);
-    }
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  6.25%,
+  50% {
+    transform: rotateY(180deg);
+  }
+
+  56.25%,
+  100% {
+    transform: rotateY(360deg);
+  }
 }
+
 @keyframes bounce {
-    0%,100% {
-        top: 10px;
-    }
-    12.5% {
-        top: 30px;
-    }
+
+  0%,
+  100% {
+    top: 10px;
+  }
+
+  12.5% {
+    top: 30px;
+  }
 }
 </style>

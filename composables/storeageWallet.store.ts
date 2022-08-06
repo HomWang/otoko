@@ -23,7 +23,7 @@ export const useWalletStore = defineStore({
     balance: 0,
     isConnected: false,
     contractAddress: '0x2348c23542a9d48dafbcbf55b322653ac366240f',
-    getNowMintPrice: 0,//获取当前的竞品价格
+    getNowMintPrice: '',//获取当前的竞品价格
     nowMintTokenId: 0,//获取当前拍卖的竞品ID
     remainingNum: 0,//获取当前剩余未被mint的剩余数量
     // remaining: 0,//获取当前剩余未被mint的剩余数量
