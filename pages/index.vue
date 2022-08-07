@@ -6,12 +6,12 @@
           <div class="max-w-1760px mx-auto px-20 mt-32px flex items-center justify-between relative z-999">
             <img src="/img/logo.png" alt="">
             <div class="flex items-center space-x-15px">
-              <a class="text-[#B3B3B3] hover:text-white no-underline" href="https://twitter.com/BigEyeRebellion"
+              <a class="text-[#B3B3B3] hover:text-white no-underline" href="https://twitter.com/otokonft"
                 target="_blank" rel="noopener noreferrer">
                 <div class="w-36px h-36px cursor-pointer twitter"></div>
               </a>
               <a class="text-[#B3B3B3] hover:text-white no-underline"
-                href="https://opensea.io/collection/big-eye-rebellion" target="_blank" rel="noopener noreferrer">
+                href="https://opensea.io/collection/otokonft" target="_blank" rel="noopener noreferrer">
                 <div class="w-36px h-36px cursor-pointer opensea"></div>
               </a>
               <div @click="clickConnect" :class="walletStore.isConnected ? '' : 'cursor-pointer'"
@@ -101,43 +101,47 @@
         </template>
         <template #page3>
           <div data-scroll="true">
-            <div ref="page3" class="text-center py-80px max-w-1600px mx-auto overflow-auto h-screen">
-              <img class="mx-auto" src="/img/bgnew-title.png" alt="">
-              <div class="flex items-center justify-between mt-80px">
-                <img class="w-640px" src="/img/bgnew-1.png" alt="">
-                <div class="bg-[#24243a] roudned-10px w-640px py-60px flex items-center justify-center">
-                  <div class="px-30px text-center">
-                    <img src="/img/debris.png" alt="">
-                    <p class="text-fs20 text-white mt-35px leading-30px">In the endless universe, there is a group of
-                      clippers that are collecting debris scattered in various multiverse until the last piece is
-                      found...
-                    </p>
+            <div ref="page3" id="page3" class="overflow-auto h-screen">
+              <div class="text-center py-80px max-w-1600px mx-auto">
+                <img class="mx-auto" src="/img/bgnew-title.png" alt="">
+                <div class="flex items-center justify-between mt-80px">
+                  <img class="w-640px" src="/img/bgnew-1.png" alt="">
+                  <div class="bg-[#24243a] roudned-10px w-640px py-60px flex items-center justify-center">
+                    <div class="px-30px text-center">
+                      <img src="/img/debris.png" alt="">
+                      <p class="text-fs20 text-white mt-35px leading-30px">In the endless universe, there is a group of
+                        clippers that are collecting debris scattered in various multiverse until the last piece is
+                        found...
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <img src="/img/left.png" alt="">
-              <div class="flex items-center justify-between">
-                <div class="bg-[#24243a] roudned-10px w-640px py-60px flex items-center justify-center">
-                  <div class="px-30px text-center">
-                    <img src="/img/debris.png" alt="">
-                    <p class="text-fs20 text-white mt-35px leading-30px">In another corner of the earth, at a glance
-                      from the outside, Otoko slogan is put on the top of the world's most powerful robot manufacturing
-                      base, designed by the world's top notch scientists. They have been working hard to test all
-                      possible combinations to develop the cyborg. Finally... they succeeded!</p>
+                <img src="/img/left.png" alt="">
+                <div class="flex items-center justify-between">
+                  <div class="bg-[#24243a] roudned-10px w-640px py-60px flex items-center justify-center">
+                    <div class="px-30px text-center">
+                      <img src="/img/manufacture.png" alt="">
+                      <p class="text-fs20 text-white mt-35px leading-30px">In another corner of the earth, at a glance
+                        from the outside, Otoko slogan is put on the top of the world's most powerful robot
+                        manufacturing
+                        base, designed by the world's top notch scientists. They have been working hard to test all
+                        possible combinations to develop the cyborg. Finally... they succeeded!</p>
+                    </div>
                   </div>
+                  <img class="w-640px" src="/img/bgnew-2.png" alt="">
                 </div>
-                <img class="w-640px" src="/img/bgnew-2.png" alt="">
-              </div>
-              <img src="/img/right.png" alt="">
-              <div class="flex items-center justify-between pb-80px">
-                <img class="w-640px" src="/img/bgnew-1.png" alt="">
-                <div class="bg-[#24243a] roudned-10px w-640px py-60px flex items-center justify-center">
-                  <div class="px-30px text-center">
-                    <img src="/img/debris.png" alt="">
-                    <p class="text-fs20 text-white mt-35px leading-30px">The cheering sound spreads all over the earth,
-                      and the efforts are finally not in vain! The robot production workshop is able to achieve fully
-                      automatic production, only to see rows of robots standing there, as if waiting for some
-                      instructions...</p>
+                <img src="/img/right.png" alt="">
+                <div class="flex items-center justify-between pb-80px">
+                  <img class="w-640px" src="/img/bgnew-3.png" alt="">
+                  <div class="bg-[#24243a] roudned-10px w-640px py-60px flex items-center justify-center">
+                    <div class="px-30px text-center">
+                      <img src="/img/birth.png" alt="">
+                      <p class="text-fs20 text-white mt-35px leading-30px">The cheering sound spreads all over the
+                        earth,
+                        and the efforts are finally not in vain! The robot production workshop is able to achieve fully
+                        automatic production, only to see rows of robots standing there, as if waiting for some
+                        instructions...</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -199,7 +203,7 @@
       </mv-full-page>
     </ClientOnly>
 
-    <div>
+    <!-- <div>
       <div v-show="loading" class="fixed top-0 left-0 w-full h-full bg-BgPopup z-999"></div>
       <Transition enter-from-class="opacity-0 scale-95 duration-150 ease-out"
         enter-to-class="opacity-100 scale-100 duration-150 ease-out"
@@ -213,7 +217,7 @@
           </div>
         </div>
       </Transition>
-    </div>
+    </div> -->
 
     <div>
       <div v-show="walletModal" class="fixed top-0 left-0 w-full h-full bg-BgPopup z-999"></div>
@@ -254,7 +258,7 @@
               <div class="absolute left-0 top-0 w-full h-full">
                 <!-- <img class="duration-300 ease-out absolute left-0 top-0 w-380px" src="/img/1.png" alt=""> -->
                 <img class="duration-300 ease-out absolute left-0 top-0 w-380px"
-                  :src="`https://ipfs.io/ipfs/QmY9AkQgjJSKbzpV6CWcDHi744X7LHmp9NikjN2uQ6JtZC/${walletStore.nowMintTokenId}.png`"
+                  :src="`https://ipfs.io/ipfs/QmRd4ynAef5xkfoGCtPtVuiiQfg64cFDd2UcPbt3jtDjSz/${walletStore.nowMintTokenId}.png`"
                   alt="">
               </div>
             </div>
@@ -264,7 +268,9 @@
               <span>OTOKO</span>
               <span>#{{ walletStore.nowMintTokenId }}</span>
             </div>
-            <div class="pt-5 text-center text-fs48 text-black">{{ walletStore.getNowMintPrice ? (Number(walletStore.getNowMintPrice) / 10 / 10) : '--' }} ETH</div>
+            <div class="pt-5 text-center text-fs48 text-black">{{ walletStore.getNowMintPrice ?
+                (Number(walletStore.getNowMintPrice) / 10 / 10) : '--'
+            }} ETH</div>
             <div class="text-center mt-4 text-[#666666] leading-8 text-fs18">
               <p>Price per Token: 1Ξ</p>
               <p>Dutch Auction starts at 1Ξ and decreases every two hours to resting price of 0.1Ξ</p>
@@ -427,30 +433,26 @@ const reducePlusBanner = (state: number) => {
 
 const page3 = ref<HTMLElement | null>(null)
 const { x, y, isScrolling, arrivedState, directions } = useScroll(page3)
-
+let yTimer: string | number | NodeJS.Timeout | undefined
 watch(y, (newValue: any, oldValue: any) => {
-  if (newValue == 0) {
-    toPage(2)
-  } else if (newValue >= 705) {
-    toPage(4)
+  if(yTimer){
+    clearTimeout(yTimer)
   }
+  yTimer = setTimeout(() => {
+    if (newValue == 0) {
+      toPage(2)
+    } else if (newValue >= 705.5) {
+      toPage(4)
+    }
+  }, 500);
 })
 
 </script>
 
 <style scoped>
-/* body {
-  background-color: #fff;
-  color: rgba(0,0,0,0.8);
+::-webkit-scrollbar{
+  width: 0.1px;
 }
-.dark-mode body {
-  background-color: #091a28;
-  color: #ebf4f1;
-}
-.sepia-mode body {
-  background-color: #f1e7d0;
-  color: #433422;
-} */
 .loader {
   width: 150px;
   margin: 50px auto 70px;
