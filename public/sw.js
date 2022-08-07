@@ -31,12 +31,33 @@ workbox.routing.registerRoute(
   })
 )
 
-// Images are handled with a Cache First strategy
-//使用缓存优先策略处理图像
+// // Images are handled with a Cache First strategy
+// //使用缓存优先策略处理图像
+// workbox.routing.registerRoute(
+//   ({ request }) => request.destination === 'image',
+//   new workbox.strategies.CacheFirst({
+//     cacheName: 'images',
+//     plugins: [
+//       // Ensure that only requests that result in a 200 status are cached
+//       //确保仅缓存导致200状态的请求
+//       new workbox.cacheableResponse.CacheableResponse({
+//         statuses: [200]
+//       }),
+//       // Don't cache more than 50 items, and expire them after 30 days
+//       //不要缓存超过50个项目，并在30天后过期
+//       new workbox.expiration.CacheExpiration('images', {
+//         maxEntries: 50,
+//         maxAgeSeconds: 60 * 60 * 24 * 30 // 30 Days
+//       })
+//     ]
+//   })
+// )
+
+// Demonstrates a custom cache name for a route.
 workbox.routing.registerRoute(
-  ({ request }) => request.destination === 'image',
+  new RegExp('.*\\.(?:png|jpg|jpeg|svg|gif|svga)'),
   new workbox.strategies.CacheFirst({
-    cacheName: 'images',
+    cacheName: 'image-cache',
     plugins: [
       // Ensure that only requests that result in a 200 status are cached
       //确保仅缓存导致200状态的请求
@@ -49,6 +70,6 @@ workbox.routing.registerRoute(
         maxEntries: 50,
         maxAgeSeconds: 60 * 60 * 24 * 30 // 30 Days
       })
-    ]
-  })
-)
+    ],
+  }),
+);

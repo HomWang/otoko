@@ -361,7 +361,7 @@ const toPage = (num: number) => {
 };
 
 onMounted(async () => {
-  await svga_player('/svga/1.svga')
+  await svga_player('/img/1.svga')
 })
 
 //声明svga变量

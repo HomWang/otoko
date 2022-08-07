@@ -49,7 +49,21 @@ export default defineNuxtConfig({
     // 颜色模块
     '@nuxtjs/color-mode',
     // '@fullpage/nuxt-fullpage',
+    // '@kevinmarrec/nuxt-pwa',
   ],
+  pwa: {
+    meta: {
+      // Generate splash screens for iOS
+      mobileAppIOS: true,
+      name: 'OTOKO',
+      author: 'Ajake123123@gmail.com',
+      description: 'OTOKO',
+      lang: 'en',
+    },
+    workbox: {
+      enabled: true
+    }
+  },
   // localization - i18n config
   intlify: {
     localeDir: 'locales',
