@@ -9,13 +9,13 @@ const MODE = process.env.NODE_ENV;
 const vitePlugin =
   MODE === 'development'
     ? [
-        nodePolyfills({
-          include: [
-            'node_modules/**/*.js',
-            new RegExp('node_modules/.vite/.*js'),
-          ],
-        }),
-      ]
+      nodePolyfills({
+        include: [
+          'node_modules/**/*.js',
+          new RegExp('node_modules/.vite/.*js'),
+        ],
+      }),
+    ]
     : [];
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -34,6 +34,23 @@ export default defineNuxtConfig({
         { src: 'https://cdn.bootcdn.net/ajax/libs/web3/1.7.4/web3.min.js' }
       ],
     },
+  },
+  publicRuntimeConfig: {
+    myApp: {
+      publicTest: "public",
+      bothTest: "public"
+
+    }
+  },
+  privateRuntimeConfig: {
+    myApp: {
+      privateTest: "private",
+      bothTest: "private",
+    }
+  },
+  render: {
+    // 如果您的页面很复杂并且加载了大量资源，那么您可能会因使用预加载而自取其辱。如果你想禁用 Nuxt 预加载，你可以在 Nuxt 配置文件中这样做。
+    // resourceHints: false
   },
   css: [
     '@/assets/css/main.scss',
@@ -96,7 +113,7 @@ export default defineNuxtConfig({
     standalone: true,
     transpile: [
       '@ethersproject',
-      'ethers', 
+      'ethers',
       'node-fetch-native',
       // 打包的时候放开
       '@web3-onboard/injected-wallets',

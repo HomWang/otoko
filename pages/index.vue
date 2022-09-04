@@ -3,6 +3,7 @@
     <ClientOnly>
       <mv-full-page ref="myFullPage" :pages="pages" v-model:page="page" :config="config">
         <template #page1>
+          <nuxt-link to="/test">跳转到test</nuxt-link>
           <div class="max-w-1760px mx-auto px-20 mt-32px flex items-center justify-between relative z-999">
             <img src="/img/logo.png" alt="">
             <div class="flex items-center space-x-15px">
@@ -269,7 +270,7 @@
               <span>#{{ walletStore.nowMintTokenId }}</span>
             </div>
             <div class="pt-5 text-center text-fs48 text-black">{{ walletStore.getNowMintPrice ?
-                (Number(walletStore.getNowMintPrice) / 10 / 10) : '--'
+                (Number(walletStore.getNowMintPrice) / 10 / 10 / 10 / 10) : '--'
             }} ETH</div>
             <div class="text-center mt-4 text-[#666666] leading-8 text-fs18">
               <p>Price per Token: 1Ξ</p>
@@ -403,8 +404,16 @@ onClickOutside(
 // banner弹窗
 let bannerModal = ref(false)
 const bannerModalRef = ref(null)
-const changeBanner = () => {
+const changeBanner = async () => {
   bannerModal.value = !bannerModal.value
+  if(bannerModal.value){
+    // 获取当前剩余未被mint的剩余数量
+    await walletStore.updateRemaining()
+    // 获取当前拍卖的竞品ID
+    await walletStore.updateNowMintTokenId()
+    // 更新价格
+    await walletStore.updateNowMintPrice()
+  }
 }
 onClickOutside(
   bannerModalRef,

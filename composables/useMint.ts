@@ -1,4 +1,4 @@
-import NFTABI from '~~/abi/test-abi.json'
+import OTOKOABI from '~~/abi/otoko-abi.json'
 
 export async function useMint(mintNum: number) {
   const walletStore = useWalletStore();
@@ -11,7 +11,7 @@ export async function useMint(mintNum: number) {
   //USDT和NF3代币合约地址
   // var contractAddress = "0x495F1eC64467539cAd047629086E3Cd95459E374";
   // 调用合约
-  const contract = new web3.eth.Contract(NFTABI, walletStore.contractAddress);
+  const contract = new web3.eth.Contract(OTOKOABI, walletStore.contractAddress);
   // contract.methods.remaining().call().then((v: any) => {
   //   console.log(v)
   //   // let ret = new BigNumber(v);
@@ -24,7 +24,7 @@ export async function useMint(mintNum: number) {
   let getGasPrice = await web3.eth.getGasPrice();
   // 更新价格
   await walletStore.updateNowMintPrice()
-  let getNowMintPrice = walletStore.getNowMintPrice / 10 /10
+  let getNowMintPrice = (walletStore.getNowMintPrice as any) / 10 / 10 / 10 / 10
   let getNowMintPriceWei = web3.utils.toWei(`${getNowMintPrice}`)
   //mintNum
   contract.methods.mint().send({

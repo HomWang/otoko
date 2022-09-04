@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import NFTABI from '~~/abi/test-abi.json'
+import OTOKOABI from '~~/abi/otoko-abi.json'
 
 export const useWalletStore = defineStore({
   id: 'wallet',
@@ -22,7 +22,7 @@ export const useWalletStore = defineStore({
     ellipsisAccount: '',
     balance: 0,
     isConnected: false,
-    contractAddress: '0x2348c23542a9d48dafbcbf55b322653ac366240f',
+    contractAddress: '0x41ef41011e9394b26b424b0ccd13eacf58ac04ab',
     getNowMintPrice: '',//获取当前的竞品价格
     nowMintTokenId: 0,//获取当前拍卖的竞品ID
     remainingNum: 0,//获取当前剩余未被mint的剩余数量
@@ -34,7 +34,7 @@ export const useWalletStore = defineStore({
   },
   actions: {
     async updateNowMintPrice(){
-      const contract = new web3.eth.Contract(NFTABI, this.contractAddress);
+      const contract = new web3.eth.Contract(OTOKOABI, this.contractAddress);
       // 获取当前的竞品价格
       await contract.methods.getNowMintPrice().call().then((v: any) => {
         return v
@@ -43,7 +43,7 @@ export const useWalletStore = defineStore({
       })
     },
     async updateNowMintTokenId(){
-      const contract = new web3.eth.Contract(NFTABI, this.contractAddress);
+      const contract = new web3.eth.Contract(OTOKOABI, this.contractAddress);
       // 获取当前拍卖的竞品ID
       await contract.methods.nowMintTokenId().call().then((v: any) => {
         return v
@@ -52,7 +52,7 @@ export const useWalletStore = defineStore({
       })
     },
     async updateRemaining(){
-      const contract = new web3.eth.Contract(NFTABI, this.contractAddress);
+      const contract = new web3.eth.Contract(OTOKOABI, this.contractAddress);
       // 获取当前剩余未被mint的剩余数量
       await contract.methods.remaining().call().then((v: any) => {
         return v
@@ -89,9 +89,9 @@ export const useWalletStore = defineStore({
             })
           })
           
-          // var contractAddress = "0x2348c23542a9d48dafbcbf55b322653ac366240f";
+          // var contractAddress = "0x41ef41011e9394b26b424b0ccd13eacf58ac04ab";
           // 调用合约
-          // const contract = new web3.eth.Contract(NFTABI, this.contractAddress);
+          // const contract = new web3.eth.Contract(OTOKOABI, this.contractAddress);
           // 获取当前剩余未被mint的剩余数量
           await this.updateRemaining()
           // 获取当前拍卖的竞品ID
